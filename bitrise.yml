@@ -5,7 +5,7 @@ workflows:
   sleep:
     steps:
       - activate-ssh-key@4: {}
-      - git-clone@6.2.1: {}
+      - git-clone@8.4.0: {}
       - script:
           title: Sleep for 5 mins
           inputs:
