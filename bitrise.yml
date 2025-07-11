@@ -14,7 +14,6 @@ workflows:
       - script:
           title: Sleep for 5 mins
           inputs:
-          - script_file_path:
           - content: |-
               #!/usr/bin/env bash
               # fail if any commands fails
