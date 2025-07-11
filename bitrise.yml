@@ -11,7 +11,7 @@ workflows:
         inputs:
         - content: |-
             #!/usr/bin/env bash
-            set -e
+            set -ex
             sleep 300
     meta:
       bitrise.io:
