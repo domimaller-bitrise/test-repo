@@ -2,14 +2,14 @@
 format_version: 11
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 workflows:
-  _clone:
+  clone:
     steps:
     - activate-ssh-key@4: {}
     - git-clone@6.2.1: {}
 
   sleep:
     before_run:
-      - _clone
+      - clone
     steps:
       - script:
           title: Sleep for 5 mins
