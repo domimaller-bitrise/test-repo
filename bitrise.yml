@@ -15,4 +15,4 @@ workflows:
             sleep 300
     meta:
       bitrise.io:
-        machine_type_id: g2.linux.medium
+        stack: osx-xcode-latest-stable
