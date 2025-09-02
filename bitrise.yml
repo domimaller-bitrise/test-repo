@@ -17,3 +17,4 @@ workflows:
       bitrise.io:
         stack: osx-xcode-26.0.x-edge
         machine_type_id: g2.mac.4large
+        remote_access: true
