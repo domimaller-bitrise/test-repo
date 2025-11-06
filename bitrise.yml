@@ -31,3 +31,45 @@ workflows:
       bitrise.io:
         stack: osx-xcode-16.0.x-edge
         machine_type_id: g2.mac.4large
+  sleep-gcp:
+    steps:
+    - activate-ssh-key@4: {}
+    - git-clone@8.4.0: {}
+    - script:
+        title: Sleep for 5 mins
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -ex
+            sleep 300
+    meta:
+      bitrise.io:
+        machine_type_id: standard
+  sleep-m1:
+    steps:
+    - activate-ssh-key@4: {}
+    - git-clone@8.4.0: {}
+    - script:
+        title: Sleep for 5 mins
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -ex
+            sleep 300
+    meta:
+      bitrise.io:
+        machine_type_id: g2-m1.4core
+  sleep-m2:
+    steps:
+    - activate-ssh-key@4: {}
+    - git-clone@8.4.0: {}
+    - script:
+        title: Sleep for 5 mins
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -ex
+            sleep 300
+    meta:
+      bitrise.io:
+        machine_type_id: g2.mac.medium
