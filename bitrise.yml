@@ -2,20 +2,6 @@
 format_version: 13
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 workflows:
-  sleep:
-    steps:
-    - activate-ssh-key@4: {}
-    - git-clone@8.4.0: {}
-    - script:
-        title: Sleep for 5 mins
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            set -ex
-            sleep 300
-    meta:
-      bitrise.io:
-        stack: osx-xcode-latest-stable
   sleep-m4pro:
     steps:
     - activate-ssh-key@4: {}
@@ -58,6 +44,7 @@ workflows:
             sleep 300
     meta:
       bitrise.io:
+        stack: osx-xcode-16.0.x
         machine_type_id: g2-m1.4core
   sleep-m2:
     steps:
@@ -72,4 +59,5 @@ workflows:
             sleep 300
     meta:
       bitrise.io:
+        stack: osx-xcode-16.0.x
         machine_type_id: g2.mac.medium
