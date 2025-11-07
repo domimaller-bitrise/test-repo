@@ -31,6 +31,20 @@ workflows:
     meta:
       bitrise.io:
         machine_type_id: standard
+  sleep-linuxbitvirt:
+    steps:
+    - activate-ssh-key@4: {}
+    - git-clone@8.4.0: {}
+    - script:
+        title: Sleep for 5 mins
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -ex
+            sleep 300
+    meta:
+      bitrise.io:
+        machine_type_id: g2.linux.medium
   sleep-m1:
     steps:
     - activate-ssh-key@4: {}
