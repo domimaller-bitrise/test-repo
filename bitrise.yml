@@ -17,6 +17,8 @@ workflows:
     steps:
       - script:
           title: Wait for nginx
+          service_containers:
+            - nginx-container
           inputs:
             - content: |
                 #!/bin/bash
@@ -30,6 +32,8 @@ workflows:
                 exit 1
       - script:
           title: Test nginx responds with 200
+          service_containers:
+            - nginx-container
           inputs:
             - content: |
                 #!/bin/bash
@@ -44,6 +48,8 @@ workflows:
       - script:
           title: Run tests inside container
           execution_container: test-runner
+          service_containers:
+            - nginx-container
           inputs:
             - content: |
                 #!/bin/bash
