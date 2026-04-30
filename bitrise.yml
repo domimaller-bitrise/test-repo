@@ -45,6 +45,7 @@ workflows:
           title: Run tests inside container
           execution_container: test-runner
           inputs:
+            - runner_bin: /bin/sh
             - content: |
                 #!/bin/sh
                 set -ex
