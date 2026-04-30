@@ -49,6 +49,7 @@ workflows:
                 #!/bin/bash
                 set -ex
                 echo "Running inside: $(cat /etc/os-release | grep PRETTY_NAME)"
+                apt-get update -qq
                 apt-get install -y --no-install-recommends curl
                 curl -sf http://localhost:80
   sleep-m4pro:
