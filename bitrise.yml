@@ -5,7 +5,7 @@ default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 containers:
   test-runner:
     type: execution
-    image: alpine:3.19
+    image: debian:12-slim
   nginx-container:
     type: service
     image: nginx
@@ -45,12 +45,11 @@ workflows:
           title: Run tests inside container
           execution_container: test-runner
           inputs:
-            - runner_bin: /bin/sh
             - content: |
-                #!/bin/sh
+                #!/bin/bash
                 set -ex
-                echo "Running inside: $(cat /etc/os-release | grep PRETTY)"
-                apk add --no-cache curl
+                echo "Running inside: $(cat /etc/os-release | grep PRETTY_NAME)"
+                apt-get install -y --no-install-recommends curl
                 curl -sf http://localhost:80
   sleep-m4pro:
     steps:
