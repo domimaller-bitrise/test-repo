@@ -1,7 +1,56 @@
 ---
-format_version: 13
+format_version: "13"
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+
+containers:
+  test-runner:
+    type: execution
+    image: alpine:3.19
+  nginx-container:
+    type: service
+    image: nginx
+    ports:
+      - "80:80"
+
 workflows:
+  test-nginx:
+    steps:
+      - script:
+          title: Wait for nginx
+          inputs:
+            - content: |
+                #!/bin/bash
+                set -ex
+                for i in $(seq 1 15); do
+                  curl -sf http://localhost:80 && echo "nginx is up!" && exit 0
+                  echo "Waiting... attempt $i"
+                  sleep 2
+                done
+                echo "nginx never became ready"
+                exit 1
+      - script:
+          title: Test nginx responds with 200
+          inputs:
+            - content: |
+                #!/bin/bash
+                set -ex
+                STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:80)
+                echo "HTTP status: $STATUS"
+                [ "$STATUS" = "200" ] || { echo "FAIL: expected 200"; exit 1; }
+                echo "PASS"
+
+  test-in-container:
+    steps:
+      - script:
+          title: Run tests inside container
+          execution_container: test-runner
+          inputs:
+            - content: |
+                #!/bin/sh
+                set -ex
+                echo "Running inside: $(cat /etc/os-release | grep PRETTY)"
+                apk add --no-cache curl
+                curl -sf http://localhost:80
   sleep-m4pro:
     steps:
     - activate-ssh-key@4: {}
