@@ -146,6 +146,24 @@ workflows:
     steps:
     - script@1:
         inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            # write your script here
+            printenv
+
+            # or run a script from your repository, like:
+            # bash ./path/to/script.sh
+            # not just bash, e.g.:
+            # ruby ./path/to/script.rb
+    - script@1:
+        inputs:
         - content: >-
             #!/usr/bin/env bash
 
@@ -165,7 +183,7 @@ workflows:
 
             # write your script here
 
-            printenv
+            nix --version
 
 
             # or run a script from your repository, like:
