@@ -85,6 +85,9 @@ workflows:
       bitrise.io:
         machine_type_id: standard
   sleep-linuxbitvirt:
+    triggers:
+      push:
+      - branch: main
     steps:
     - activate-ssh-key@4: {}
     - git-clone@8.4.0: {}
