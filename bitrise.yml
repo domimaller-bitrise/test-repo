@@ -70,6 +70,21 @@ workflows:
       bitrise.io:
         stack: osx-xcode-edge
         machine_type_id: g2.mac.4large
+  sleep-m4:
+    steps:
+    - activate-ssh-key@4: {}
+    - git-clone@8.4.0: {}
+    - script:
+        title: Sleep for 5 mins
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -ex
+            sleep 300
+    meta:
+      bitrise.io:
+        stack: osx-xcode-edge
+        machine_type_id: g2.mac.m4.5c-6g
   sleep-gcp:
     steps:
     - activate-ssh-key@4: {}
