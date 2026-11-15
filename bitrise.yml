@@ -160,6 +160,7 @@ workflows:
     meta:
       bitrise.io:
         machine_type_id: g2.linux.medium
+        license_pool_id: 19f5d26b-a1b7-4d1b-837d-c814b50c4cc8
   printenv:
     steps:
     - script@1:
